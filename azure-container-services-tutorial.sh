@@ -12,7 +12,7 @@ waitMessage "Have you done az_login? It will fail misserably otherwise. Ctrl+C t
 # get public ip addr
 _PIP=$(curl ipinfo.io/ip)   
 # transform userid to lowercase since some Azure resource names don't like uppercase
-userid=$(echo "$USER" | awk '{print tolower(S0)}')
+userid=$(echo "$USER" | awk '{print tolower($0)}')
 #---------------------------------------------------------------------------
 echoSection "Step1 - build container app locally"
 # https://docs.microsoft.com/en-us/azure/aks/tutorial-kubernetes-prepare-app
