@@ -67,7 +67,7 @@ $vmConfig = Set-AzureRmVMOSDisk -VM $vmConfig -Name "$($vmname)-osdisk" -VhdUri 
 New-AzureRmVM -ResourceGroupName "$rgname" -Location "$location" -VM $vmConfig
 
 # run the installation script
-$settings = @{"fileUris" = @("https://cljungtest10.blob.core.windows.net/public/ubuntu-install-devtools.sh"); "commandToExecute"= "bash ./ubuntu-install-devtools.sh '$env:USERNAME'" };
+$settings = @{"fileUris" = @("https://raw.githubusercontent.com/cljung/aztechdays/master/ubuntu-install-devtools.sh"); "commandToExecute"= "bash ./ubuntu-install-devtools.sh '$env:USERNAME'" };
 Set-AzureRmVMExtension -ResourceGroupName $rgname -VMName $vmname -Name "CustomScriptforLInux" -Publisher "Microsoft.Azure.Extensions" `
                         -TypeHandlerVersion 2.0 -ExtensionType "CustomScript" -Location $location -Settings $settings -WarningAction SilentlyContinue
 
