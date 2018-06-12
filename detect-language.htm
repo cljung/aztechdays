@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Translate Text Sample</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+</head>
+<body>
+
+<script type="text/javascript">
+    function detectLanguage() {
+        // **********************************************
+        // *** Update or verify the following values. ***
+        // **********************************************
+
+        // Replace <Subscription Key> with your valid subscription key.
+        var subscriptionKey = "...";
+
+        // You must use the same region in your REST call as you used to get your
+        // subscription keys. For example, if you got your subscription keys from
+        // westus, replace "westcentralus" in the URI below with "westus".
+        //
+        // Free trial subscription keys are generated in the westcentralus region.
+        // If you use a free trial subscription key, you shouldn't need to change
+        // this region.
+        var uriBase =
+            "https://api.cognitive.microsofttranslator.com/detect";
+
+        var text = document.getElementById("requestTextArea").value;
+
+        // Request parameters.
+        var params = {
+            "api-version": "3.0"
+        };
+
+        // Make the REST API call.
+        $.ajax({
+            url: uriBase + "?" + $.param(params),
+
+            // Request headers.
+            beforeSend: function(xhrObj){
+                xhrObj.setRequestHeader("Content-Type","application/json");
+                xhrObj.setRequestHeader(
+                    "Ocp-Apim-Subscription-Key", subscriptionKey);
+            },
+
+            type: "POST",
+
+            // Request body.
+            data: '[{"Text":"' + text + '"}]',
+        })
+
+        .done(function(data) {
+            // Show formatted JSON on webpage.
+            $("#responseTextArea").val(JSON.stringify(data, null, 2));
+        })
+
+        .fail(function(jqXHR, textStatus, errorThrown) {
+            // Display error message.
+            var errorString = (errorThrown === "") ? "Error. " :
+                errorThrown + " (" + jqXHR.status + "): ";
+            errorString += (jqXHR.responseText === "") ? "" :
+                jQuery.parseJSON(jqXHR.responseText).message;
+            alert(errorString);
+        });
+    };
+</script>
+
+<h1>Detect Language:</h1>
+Enter the text, then click the <strong>Detect</strong> button.
+<br><br>
+<button onclick="detectLanguage()">Detect</button>
+<br><br>
+<div id="wrapper" style="width:1020px; display:table;">
+    <div id="textInput" style="width:600px; display:table-cell;">
+        Request:
+        <br><br>
+        <textarea id="requestTextArea" class="UIInput"
+                  style="width:580px; height:400px;"></textarea>
+    </div>
+    <div id="jsonOutput" style="width:600px; display:table-cell;">
+        Response:
+        <br><br>
+        <textarea id="responseTextArea" class="UIInput"
+                  style="width:580px; height:400px;"></textarea>
+    </div>
+</div>
+<br/>
+Read more in the <a href="https://docs.microsoft.com/sv-se/azure/cognitive-services/translator/reference/v3-0-detect?tabs=curl" target="_blank">documentation</a>
+</body>
+</html>
