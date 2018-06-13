@@ -20,7 +20,7 @@ $subnetAddressPrefix="192.168.1.0/24"
 
 # create secure pwd string and Credentials object
 $vmpwdsec = ConvertTo-SecureString $vmpwd -AsPlainText -Force
-$cred = New-Object System.Management.Automation.PSCredential ( $env:USERNAME, $vmpwdsec )
+$cred = New-Object System.Management.Automation.PSCredential ( $userid, $vmpwdsec )
 
 # create resource group
 New-AzureRmResourceGroup -Name "$rgname" -Location "$location"
@@ -70,6 +70,11 @@ New-AzureRmVM -ResourceGroupName "$rgname" -Location "$location" -VM $vmConfig
 $settings = @{"fileUris" = @("https://raw.githubusercontent.com/cljung/aztechdays/master/ubuntu-install-devtools.sh"); "commandToExecute"= "bash ./ubuntu-install-devtools.sh '$env:USERNAME'" };
 Set-AzureRmVMExtension -ResourceGroupName $rgname -VMName $vmname -Name "CustomScriptforLInux" -Publisher "Microsoft.Azure.Extensions" `
                         -TypeHandlerVersion 2.0 -ExtensionType "CustomScript" -Location $location -Settings $settings -WarningAction SilentlyContinue
+
+# remote into the VM and do
+# wget https://raw.githubusercontent.com/cljung/aztechdays/master/azure-container-services-tutorial.sh
+# chmod +x azure-container-services-tutorial.sh
+# dos2unix azure-container-services-tutorial.sh
 
 # Remove-AzureRmResourceGroup -Name $rgname -Force
 

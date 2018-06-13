@@ -13,7 +13,7 @@ az group create --location westeurope --name "$rgname"
 az vm create --resource-group "$rgname" --name "$vmname" --image "UbuntuLTS" --admin-username "$USER" --admin-password "$vmpwd" --use-unmanaged-disk --size Standard_D1_v2 --storage-account "$(echo $vmname)stg" --storage-sku "Standard_LRS"
   
 # run the installation script to setup the VM
-az vm extension set --resource-group "$rgname" --vm-name "$vmname" --name "customScript" --publisher "Microsoft.Azure.Extensions" --protected-settings '{"fileUris":["https://raw.githubusercontent.com/cljung/aztechdays/master/ubuntu-install-devtools.sh"],"commandToExecute":"./ubuntu-install-devtools.sh '$USER'"}'  
+az vm extension set --resource-group "$rgname" --vm-name "$vmname" --name "customScript" --publisher "Microsoft.Azure.Extensions" --protected-settings '{"fileUris":["https://raw.githubusercontent.com/cljung/aztechdays/master/ubuntu-install-devtools.sh"],"commandToExecute":"./ubuntu-install-devtools.sh '$userid'"}'  
 
 # open the firewall so we can browse to various things the demo needs
 nsgname="$(echo $vmname)NSG"
