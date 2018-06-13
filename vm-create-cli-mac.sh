@@ -4,7 +4,8 @@
 userid=$(echo "$USER" | awk '{print tolower($0)}')
 vmname=$userid$RANDOM
 rgname=$vmname-rg
-vmpwd=Pwdpwd$RANDOM$RANDOM!
+# vmpwd=Pwdpwd$RANDOM$RANDOM!
+echo -n "VM Password for user $userid:" & read -s vmpwd
 _PIP=$(curl http://ipinfo.io/ip)
 
 # create the RG
