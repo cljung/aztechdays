@@ -96,7 +96,7 @@ cd ..
 # ---------------------------------------------------------------------------------
 # deploy zip file to Azure Functions App
 # ---------------------------------------------------------------------------------
-# az functionapp deployment source config-zip  -g "$rgname" -n "$funcappname" --src "./$funcappname.zip"
+az functionapp deployment source config-zip  -g "$rgname" -n "$funcappname" --src "./$funcappname.zip"
 
 # ---------------------------------------------------------------------------------
 # remove everything
