@@ -74,9 +74,11 @@ Set-AzureRmVMExtension -ResourceGroupName $rgname -VMName $vmname -Name "CustomS
 write-output "Password: $vmpwd"
                         
 # remote into the VM and do
-# wget https://raw.githubusercontent.com/cljung/aztechdays/master/azure-container-services-tutorial.sh
-# chmod +x azure-container-services-tutorial.sh
-# dos2unix azure-container-services-tutorial.sh
+#
+# chmod +x download-azure-container-script.sh
+# ./download-azure-container-script.sh
+#
+# this will download the azure-container-services-tutorial.sh
 
 # Remove-AzureRmResourceGroup -Name $rgname -Force
 

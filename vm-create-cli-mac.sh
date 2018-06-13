@@ -27,13 +27,9 @@ az vm show -g $rgname -n $vmname -d --query "publicIps" -o tsv
 
 # login to the VM and do the following to avoid always running docker with sudo
 #
-# sudo groupadd docker
-# sudo gpasswd -a $USER docker
+# chmod +x download-azure-container-script.sh
+# ./download-azure-container-script.sh
 #
-# then do, logout and login again so than group membership takes effect. Then do
-# 
-# wget https://raw.githubusercontent.com/cljung/aztechdays/master/azure-container-services-tutorial.sh
-# chmod +x azure-container-services-tutorial.sh
-# dos2unix azure-container-services-tutorial.sh
+# this will download the azure-container-services-tutorial.sh
 
 echo "password: $vmpwd"
