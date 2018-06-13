@@ -8,19 +8,20 @@ CLI scripts written for Mac OS have a *-mac.sh name. CLI scripts intended for Wi
 In order for the script to be repeatable, all the resources have names based on your userid followed by a random number. That way you can run the scripts in a shared subscription and everything is created in a new resource group. Easy to create, easy to remove.
 
 ## Preparing your scripting environment
-Install Powershell and CLI and get your environment ready
+Install Powershell and CLI and get your environment ready. <a href="http://www.redbaronofazure.com/?p=7432" target="_blank">http://www.redbaronofazure.com/?p=7432</a>
 
 No scripts included for this part.
 
 ## PaaS AppServices
-AppServices WebApps, managed database (MySQL in my example), Azure Functions and CosmosDB
+AppServices WebApps, managed database (MySQL in my example) <a href="http://www.redbaronofazure.com/?p=7445" target="_blank">http://www.redbaronofazure.com/?p=7445</a>
+Azure Functions and CosmosDB. <a href="http://www.redbaronofazure.com/?p=7461" target="_blank">http://www.redbaronofazure.com/?p=7461</a>
 
 appservices-*.*
 cosmosdb-*.*
 mysql-*.*
 
 ## IaaS VMs
-Creation of a Ubutu Linux VM that you will use as a dev/build machine for the Container module
+Creation of a Ubutu Linux VM that you will use as a dev/build machine for the Container module. <a href="http://www.redbaronofazure.com/?p=7472" target="_blank">http://www.redbaronofazure.com/?p=7472</a>
 
 vm-create*.*
 ubuntu-install-devtools.sh
