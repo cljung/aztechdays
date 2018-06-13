@@ -34,4 +34,4 @@ az vm show -g $rgname -n $vmname -d --query "publicIps" -o tsv
 #
 # this will download the azure-container-services-tutorial.sh
 
-echo "password: $vmpwd"
+# echo "password: $vmpwd"
