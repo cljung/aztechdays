@@ -53,21 +53,19 @@ $nsg = New-AzureRmNetworkSecurityGroup -ResourceGroupName "$rgname" -Location "$
 $nic = New-AzureRmNetworkInterface -Name "$nicname" -ResourceGroupName "$rgname" -Location "$location" -SubnetId $vnet.Subnets[0].Id -PublicIpAddressId $pip.Id -NetworkSecurityGroupId $nsg.Id
 
 # set some various VM config
+$osDiskUri = '{0}vhds/{1}-osdisk.vhd' -f $StorageAccount.PrimaryEndpoints.Blob.ToString(), $vmname.ToLower()
 $vmConfig = New-AzureRmVMConfig -VMName $vmname -VMSize "Standard_D1_v2" | `
     Set-AzureRmVMOperatingSystem -Linux -ComputerName "$vmname" -Credential $cred | `
     Set-AzureRmVMSourceImage -PublisherName "Canonical" -Offer "UbuntuServer" -Skus "16.04-LTS" -Version "latest" | `
     Add-AzureRmVMNetworkInterface -Id $nic.Id | `
+    Set-AzureRmVMOSDisk -Name "$($vmname)-osdisk" -VhdUri $OsDiskUri -CreateOption FromImage | `
     Set-AzureRmVMBootDiagnostics -Disable
-
-# setup storage
-$osDiskUri = '{0}vhds/{1}-osdisk.vhd' -f $StorageAccount.PrimaryEndpoints.Blob.ToString(), $vmname.ToLower()
-$vmConfig = Set-AzureRmVMOSDisk -VM $vmConfig -Name "$($vmname)-osdisk" -VhdUri $OsDiskUri -CreateOption FromImage 
 
 # Create a virtual machine
 New-AzureRmVM -ResourceGroupName "$rgname" -Location "$location" -VM $vmConfig
 
 # run the installation script
-$settings = @{"fileUris" = @("https://raw.githubusercontent.com/cljung/aztechdays/master/ubuntu-install-devtools.sh"); "commandToExecute"= "bash ./ubuntu-install-devtools.sh '$env:USERNAME'" };
+$settings = @{"fileUris" = @("https://raw.githubusercontent.com/cljung/aztechdays/master/ubuntu-install-devtools.sh"); "commandToExecute"= "bash ./ubuntu-install-devtools.sh '$userid'" };
 Set-AzureRmVMExtension -ResourceGroupName $rgname -VMName $vmname -Name "CustomScriptforLInux" -Publisher "Microsoft.Azure.Extensions" `
                         -TypeHandlerVersion 2.0 -ExtensionType "CustomScript" -Location $location -Settings $settings -WarningAction SilentlyContinue
 
