@@ -3,7 +3,7 @@ This repo is for the hands-on technical training I've delivered. There is an acc
 
 ## Which script should I use?
 I've included multiple scripts for the same task so that you can use Powershell and/or CLI at your will.
-CLI scripts written for Mac OS have a *-mac.sh name. CLI scripts intended for Windows DOS Command Prompt have a *-win.cmd name (not they do not work in a Powershell command prompt). Powershell scripts are pretty obvious as they are named *.ps1.
+CLI scripts written for Mac OS have a *-mac.sh name. CLI scripts intended for Windows DOS Command Prompt have a *-win.cmd name. Note that CLI/DOS are not desiged to rn in a Powershell command prompt due to it's use of environment variables. I selected the DOS Command Prompt just because I wanted to show you it works too. Powershell scripts are pretty obvious as they are named *.ps1.
 
 In order for the script to be repeatable, that all have the format of basing the name of the resource derived from your userid and a random number. That way you can run the scripts in a shared subscription.
 
