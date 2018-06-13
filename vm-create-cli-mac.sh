@@ -1,7 +1,7 @@
 #/bin/bash
 
 # transform userid to lowercase since some Azure resource names don't like uppercase
-userid=$(echo "$USER" | awk '{print tolower(S0)}')
+userid=$(echo "$USER" | awk '{print tolower($0)}')
 vmname=$userid$RANDOM
 rgname=$vmname-rg
 vmpwd=Pwdpwd$RANDOM$RANDOM!

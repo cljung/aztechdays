@@ -75,7 +75,7 @@ sudo apt-get install dos2unix
 #---------------------------------------------------------------------------
 echoSection "creating the Azure Containers download script"
 #---------------------------------------------------------------------------
-cat <<EOF > "/home/$userid/download-azure-container-script.sh"
+cat <<EOF > "/home/$DEVUSER/download-azure-container-script.sh"
 wget https://raw.githubusercontent.com/cljung/aztechdays/master/azure-container-services-tutorial.sh
 chmod +x azure-container-services-tutorial.sh
 dos2unix azure-container-services-tutorial.sh
