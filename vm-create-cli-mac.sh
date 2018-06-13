@@ -5,6 +5,7 @@ userid=$(echo "$USER" | awk '{print tolower($0)}')
 vmname=$userid$RANDOM
 rgname=$vmname-rg
 vmpwd=Pwdpwd$RANDOM$RANDOM!
+_PIP=$(curl http://ipinfo.io/ip)
 
 # create the RG
 az group create --location westeurope --name "$rgname"
@@ -17,8 +18,8 @@ az vm extension set --resource-group "$rgname" --vm-name "$vmname" --name "custo
 
 # open the firewall so we can browse to various things the demo needs
 nsgname="$(echo $vmname)NSG"
-az network nsg rule create --resource-group "$rgname" --nsg-name "$nsgname" --name "Port_80" --access allow --protocol Tcp --direction Inbound --priority 110 --source-address-prefix "*" --source-port-range "*" --destination-address-prefix "*" --destination-port-range 80
-az network nsg rule create --resource-group "$rgname" --nsg-name "$nsgname" --name "Port_8080" --access allow --protocol Tcp --direction Inbound --priority 120 --source-address-prefix "*" --source-port-range "*" --destination-address-prefix "*" --destination-port-range 8080
+az network nsg rule create --resource-group "$rgname" --nsg-name "$nsgname" --name "Port_80" --access allow --protocol Tcp --direction Inbound --priority 110 --source-address-prefix "$_PIP" --source-port-range "*" --destination-address-prefix "*" --destination-port-range 80
+az network nsg rule create --resource-group "$rgname" --nsg-name "$nsgname" --name "Port_8080" --access allow --protocol Tcp --direction Inbound --priority 120 --source-address-prefix "$_PIP" --source-port-range "*" --destination-address-prefix "*" --destination-port-range 8080
 
 az network nsg rule list --resource-group "$rgname" --nsg-name "$nsgname"
 
