@@ -71,6 +71,8 @@ $settings = @{"fileUris" = @("https://raw.githubusercontent.com/cljung/aztechday
 Set-AzureRmVMExtension -ResourceGroupName $rgname -VMName $vmname -Name "CustomScriptforLInux" -Publisher "Microsoft.Azure.Extensions" `
                         -TypeHandlerVersion 2.0 -ExtensionType "CustomScript" -Location $location -Settings $settings -WarningAction SilentlyContinue
 
+write-output "Password: $vmpwd"
+                        
 # remote into the VM and do
 # wget https://raw.githubusercontent.com/cljung/aztechdays/master/azure-container-services-tutorial.sh
 # chmod +x azure-container-services-tutorial.sh
