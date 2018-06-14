@@ -27,7 +27,7 @@ vm-create*.*
 ubuntu-install-devtools.sh
 
 ## Azure Kubernetes Services (AKS)
-Script that creates a Azure >Container Registry (ACS) and Azure Kubernete Services cluster and deploys an app to it
+Script that creates a Azure Container Registry (ACS) and Azure Kubernete Services cluster and deploys an app to it
 <a href="http://www.redbaronofazure.com/?p=7484" target="_blank">http://www.redbaronofazure.com/?p=7484</a>
 
 azure-container-services-tutorial.sh
