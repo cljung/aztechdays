@@ -1,3 +1,5 @@
+# https://docs.microsoft.com/en-us/azure/cosmos-db/scripts/secure-get-account-key-powershell
+
 $location="West Europe"
 # transform userid to lowercase since some Azure resource names don't like uppercase
 $userid=$env:USERNAME.tolower()
